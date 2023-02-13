@@ -110,7 +110,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                   SafeArea(child: Container()),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    padding: const EdgeInsets.only(top: 50  ,bottom: 50),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -128,10 +128,8 @@ class _DetailPageState extends State<DetailPage> {
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.white,
                                         elevation: 0,
-                                        side: BorderSide(
-                                            color: countCart >= 1
-                                                ? Colors.green
-                                                : Colors.grey),
+                                        side: const BorderSide(
+                                            color: Colors.grey),
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(
                                                 15)), // <-- Radius
@@ -172,7 +170,7 @@ class _DetailPageState extends State<DetailPage> {
                                         backgroundColor: Colors.white,
                                         elevation: 0,
                                         side:
-                                            const BorderSide(color: Colors.green),
+                                            const BorderSide(color: Colors.grey),
                                         shape: RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(
                                                 15)), // <-- Radius
@@ -219,7 +217,7 @@ class _DetailPageState extends State<DetailPage> {
                           "\$${item["price"]}",
                           style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 35,
+                              fontSize: 30,
                               fontFamily: "Gilroy"),
                         ),
                       ],
@@ -230,8 +228,8 @@ class _DetailPageState extends State<DetailPage> {
                     height: 70,
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                        border: Border(top: BorderSide(color: Colors.grey, width: 1)),
+                    decoration: BoxDecoration(
+                        border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1)),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -253,21 +251,34 @@ class _DetailPageState extends State<DetailPage> {
                     height: 70,
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      border: Border(top: BorderSide(color: Colors.grey, width: 1)),
+                    decoration: BoxDecoration(
+                      border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1)),
                     ),
 
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Nutrition",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
                           ),
                         ),
-                        Icon(Icons.chevron_right,color: Colors.black,)
+                        Row(
+                          children:  [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              margin: const EdgeInsets.only(right: 15),
+                              decoration: BoxDecoration(
+                                color: Colors.grey.shade300,
+                                borderRadius: const BorderRadius.all(Radius.circular(5))
+                              ),
+                              child: Text('100gm',style: TextStyle(color: Colors.grey.shade700),),
+                            ),
+                            const Icon(Icons.chevron_right,color: Colors.black,),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -275,20 +286,37 @@ class _DetailPageState extends State<DetailPage> {
                     height: 70,
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.centerLeft,
-                    decoration: const BoxDecoration(
-                      border: Border(top: BorderSide(color: Colors.grey, width: 1)),
+                    decoration: BoxDecoration(
+                      border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.5), width: 1)),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           "Review",
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 20,
                           ),
                         ),
-                        Icon(Icons.chevron_right,color: Colors.black,)
+                        Row(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(right: 15),
+
+                              child: Row(
+                                children: const [
+                                  Icon(Icons.star,size: 20,color: Colors.red,),
+                                  Icon(Icons.star,size: 20,color: Colors.red,),
+                                  Icon(Icons.star,size: 20,color: Colors.red,),
+                                  Icon(Icons.star,size: 20,color: Colors.red,),
+                                  Icon(Icons.star,size: 20,color: Colors.red,),
+                                ],
+                              ),
+                            ),
+                            const Icon(Icons.chevron_right,color: Colors.black,),
+                          ],
+                        )
                       ],
                     ),
                   ),

@@ -123,6 +123,7 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    FocusNode myFocusNode = FocusNode();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -147,12 +148,21 @@ class _ExplorePageState extends State<ExplorePage> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: TextFormField(
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.search),
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide.none,
+                      ),
+                      prefixIcon: const Icon(Icons.search,color: Colors.black,size: 27,),
                       label: Text('Search Store'),
                       labelStyle:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade700
+                          ),
+                      filled: true,
+                      fillColor: Colors.grey.shade200,
+                  ),
+
                 ),
               ),
               Expanded(
