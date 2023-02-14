@@ -446,12 +446,10 @@ class GetData {
 
 
   List<Map<dynamic, dynamic>> filterSearch({String? byItem,int? limit}) {
-    print("Filter Called : $byItem");
     List<Map<dynamic, dynamic>> l = [];
 
     if (limit!=null){
       int count =0;
-      print(limit);
       for (var element in data) {
         if(element['item'] == byItem && count<limit){
           l.add(element);
@@ -463,26 +461,25 @@ class GetData {
     }
     return l;
   }
-
-  Map<dynamic, dynamic> searchElement(item){
-    Map<dynamic, dynamic> map = item;
-    for (var element in data) {
-      // print(element);
-      if (element['title'].toString() == item['title'].toString() &&
-          element['item'].toString() == item['item'].toString() &&
-          element['quantity'].toString() == item['quantity'].toString() &&
-          element['img'].toString() == item['img'].toString()
-      ) {
-        map = element;
-      }
-    }
-    return map;
-  }
+  //
+  // Map<dynamic, dynamic> searchElement(item){
+  //   Map<dynamic, dynamic> map = item;
+  //   for (var element in data) {
+  //     // print(element);
+  //     if (element['title'].toString() == item['title'].toString() &&
+  //         element['item'].toString() == item['item'].toString() &&
+  //         element['quantity'].toString() == item['quantity'].toString() &&
+  //         element['img'].toString() == item['img'].toString()
+  //     ) {
+  //       map = element;
+  //     }
+  //   }
+  //   return map;
+  // }
 
   List<Map<dynamic, dynamic>> favoriteItem() {
     List<Map<dynamic, dynamic>> l = [];
     l = data.where((i) => i["favorite"] == true).toList();
-    print("Favorite Data : $data");
     return l;
   }
 
@@ -497,8 +494,6 @@ class GetData {
   }
 
   void removeCartItem(item,index) {
-    print(index);
-    print(item);
     for (var element in data) {
       if (element.toString() == item.toString()) {
         element['cart'] = 0;
@@ -525,7 +520,6 @@ class GetData {
           element['quantity'] == item['quantity'] &&
           element['img'] == item['img']
       ) {
-        print(element);
         element['cart'] = count;
         return element;
       }
