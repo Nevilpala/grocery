@@ -1,22 +1,6 @@
 
-
-// class Data {
-//   Data({
-//     required this.img,
 //     required this.title,
 //     required this.price,
-//     required this.quantity,
-//     required this.item,
-//     required this.favorite,
-//   });
-//   String img;
-//   String title;
-//   double price;
-//   String quantity;
-//   String item;
-//   bool favorite;
-// }
-
 List<Map<dynamic, dynamic>> data = [
   {
     "img": "assets/images/beverages_images/apple_and_grape_juice.png",
