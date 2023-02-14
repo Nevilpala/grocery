@@ -1,6 +1,4 @@
 
-//     required this.title,
-//     required this.price,
 List<Map<dynamic, dynamic>> data = [
   {
     "img": "assets/images/beverages_images/apple_and_grape_juice.png",
