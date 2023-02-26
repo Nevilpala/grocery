@@ -5,8 +5,9 @@ import 'package:nectar/home/cart_page.dart';
 import 'package:nectar/home/explore_page.dart';
 import 'package:nectar/home/favroite_page.dart';
 import 'package:nectar/home/shop_page.dart';
+import 'exit_popup.dart';
 
-class HomePage extends StatefulWidget  {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -25,28 +26,27 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: _widgets[_seletedIndex],
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft : Radius.circular(50)),
-          color: Colors.transparent
-        ),
-        child: BottomNavigationBar(
+    return WillPopScope(
+      onWillPop: () => showExitPopup(context),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: _widgets[_seletedIndex],
+        bottomNavigationBar: Container(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(50)),
+              color: Colors.transparent),
+          child: BottomNavigationBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
             selectedItemColor: Colors.green,
-            selectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.w500
-            ),
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500),
             unselectedItemColor: Colors.black,
             type: BottomNavigationBarType.fixed,
             currentIndex: _seletedIndex,
             onTap: (index) {
               setState(() {
-                  _seletedIndex = index;
+                _seletedIndex = index;
               });
             },
             items: [
@@ -73,7 +73,6 @@ class _HomePageState extends State<HomePage> {
                   'assets/icons/cart_icon.svg',
                   color: Colors.green,
                 ),
-
               ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset('assets/icons/favourite_icon.svg'),
@@ -91,11 +90,10 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.green,
                 ),
               ),
-            ]
+            ],
+          ),
         ),
       ),
     );
   }
-
 }
-

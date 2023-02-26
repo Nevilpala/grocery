@@ -50,6 +50,7 @@ class Assets {
   static const String homeFavroitePage = 'lib/home/favroite_page.dart';
   static const String homeShopPage = 'lib/home/shop_page.dart';
   static const String iconsAccountIcon = 'assets/icons/account_icon.svg';
+  static const String iconsAccountIcon.svg = 'assets/icons/account_icon.svg.png';
   static const String iconsAppIcon = 'assets/icons/app_icon.svg';
   static const String iconsAppIconColor = 'assets/icons/app_icon_color.svg';
   static const String iconsCartIcon = 'assets/icons/cart_icon.svg';
@@ -67,6 +68,7 @@ class Assets {
   static const String imagesPulses = 'assets/images/pulses.png';
   static const String imagesRise = 'assets/images/rise.png';
   static const String imagesWelcomeImage = 'assets/images/welcome_image.png';
+  static const String libExitPopup = 'lib/exit_popup.dart';
   static const String libFilterPage = 'lib/filter_page.dart';
   static const String libFlashScreen = 'lib/flash_screen.dart';
   static const String libHomePage = 'lib/home_page.dart';
