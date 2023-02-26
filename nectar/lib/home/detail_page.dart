@@ -25,7 +25,6 @@ class _DetailPageState extends State<DetailPage> {
     // print(item);
     item=widget.item;
     countCart = item['cart'];
-    print("Detail PAGE REFRESH : $item");
   }
 
   @override
