@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nectar/Demp_Api/demo.dart';
 import 'package:nectar/flash_screen.dart';
-import 'package:nectar/home_page.dart';
-
 
 void main() async{
   runApp(const MyApp());
