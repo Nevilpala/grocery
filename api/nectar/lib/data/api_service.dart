@@ -106,7 +106,6 @@ class ApiService {
       return throw "Failed to load data list";
     }
   }
-  //
   Future<List<Data>> cartItem() async{
     Response res = await get(apiUrl);
     if (res.statusCode == 200) {

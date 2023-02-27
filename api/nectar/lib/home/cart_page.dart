@@ -17,7 +17,6 @@ class _CartPageState extends State<CartPage> {
   dynamic _totalAmount = 0;
   final ApiService api = ApiService();
 
-
   refreshData() {
     _totalAmount = 0;
     for (var element in _item) {
@@ -53,7 +52,6 @@ class _CartPageState extends State<CartPage> {
                       setState(() {
                         refreshData();
                         loader = true;
-
                       });
                     }
                   },
@@ -124,11 +122,9 @@ class _CartPageState extends State<CartPage> {
                                   onPressed: () async {
                                     if (countCart > 0) {
                                       countCart -= 1;
-
-                                    }else if(countCart==0){
+                                    } else if (countCart == 0) {
                                       await api.removeCartItem(_item[i].id);
                                       loader = true;
-
                                     }
                                     setState(() {
                                       api.addCart(_item[i], countCart);
@@ -218,100 +214,97 @@ class _CartPageState extends State<CartPage> {
   }
 
   Widget screenReturn() {
-      return Column(
-        children: [
-          Expanded(
-            child: FutureBuilder(
-              future: loader ? loadList() : null,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState != ConnectionState.waiting &&
-                    snapshot.hasData) {
-                  _item = snapshot.data!;
-                  loader = false;
-
-                  if (_item.isEmpty) {
-                    return const Center(
-                      child: Text(
-                        'Favorite Item is Empty',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                    );
-                  } else {
-                    refreshData();
-                    return GridView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1, childAspectRatio: 2 / 1),
-                      itemBuilder: (context, index) => getCard(index),
-                      itemCount: _item.length,
-                    );
-                  }
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
+    return Column(
+      children: [
+        Expanded(
+          child: GridView.builder(
+            physics: const BouncingScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1, childAspectRatio: 2 / 1),
+            itemBuilder: (context, index) => getCard(index),
+            itemCount: _item.length,
           ),
-          Container(
-            height: 110,
-            width: double.infinity,
-            color: Colors.white,
-            padding: const EdgeInsets.all(20),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ), // <-- Radius
-              ),
-              child: Row(
-                children: [
-                  Expanded(child: Container()),
-                  const Expanded(
-                    flex: 4,
-                    child: Center(
-                      child: Text(
-                        "Go To Check Out",
-                        style: TextStyle(
-                          // fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
+        ),
+        Container(
+          height: 110,
+          width: double.infinity,
+          color: Colors.white,
+          padding: const EdgeInsets.all(20),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ), // <-- Radius
+            ),
+            child: Row(
+              children: [
+                Expanded(child: Container()),
+                const Expanded(
+                  flex: 4,
+                  child: Center(
+                    child: Text(
+                      "Go To Check Out",
+                      style: TextStyle(
+                        // fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                  Expanded(
-                      child: Container(
-                    height: 25,
-                    decoration: BoxDecoration(
-                        color: Colors.green.shade700,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5))),
-                    child: Center(
-                      child: Text(
-                        "\$${_totalAmount.toStringAsFixed(2)}",
-                        style: const TextStyle(),
-                        // softWrap: false,
-                        overflow: TextOverflow.visible,
-                      ),
+                ),
+                Expanded(
+                    child: Container(
+                  height: 25,
+                  decoration: BoxDecoration(
+                      color: Colors.green.shade700,
+                      borderRadius: const BorderRadius.all(Radius.circular(5))),
+                  child: Center(
+                    child: Text(
+                      "\$${_totalAmount.toStringAsFixed(2)}",
+                      style: const TextStyle(),
+                      // softWrap: false,
+                      overflow: TextOverflow.visible,
                     ),
-                  )),
-                ],
-              ),
+                  ),
+                )),
+              ],
             ),
-          )
-        ],
-      );
+          ),
+        )
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screenReturn(),
+      body: FutureBuilder(
+        future: loader ? loadList() : null,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.waiting &&
+              snapshot.hasData) {
+            _item = snapshot.data!;
+            loader = false;
+
+            if (_item.isEmpty) {
+              return const Center(
+                child: Text(
+                  'Favorite Item is Empty',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              );
+            } else {
+              refreshData();
+              return screenReturn();
+            }
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
+      ),
     );
   }
 }
