@@ -1,11 +1,11 @@
 
 import 'package:mongo_dart/mongo_dart.dart';
 import 'package:nectar/data/data.dart';
+import 'package:nectar/util/constant.dart';
 
 class DataBase {
   static var db, userCollection;
-  static const MONGO_CONN_URL = 'mongodb+srv://nevilpala:nevilpala@nevil.wzohktp.mongodb.net/Nectar?retryWrites=true&w=majority';
-  static const USER_COLLECTION = 'nectar';
+
 
   static connect() async {
     db = await Db.create(MONGO_CONN_URL);
