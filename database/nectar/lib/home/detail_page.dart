@@ -89,10 +89,9 @@ class _DetailPageState extends State<DetailPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(500)),
                           ),
-                          onPressed: () {
-                            setState(() {
-                              item!.favorite = DataBase.addRemoveFavroite(item!.id) as bool;
-                            });
+                          onPressed: () async {
+                            item!.favorite = await DataBase.addRemoveFavroite(item!);
+                            setState(()  {});
                           },
                           child: Icon(
                             Icons.favorite,

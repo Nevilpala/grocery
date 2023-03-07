@@ -14,7 +14,6 @@ class FlashScreen extends StatefulWidget {
 class _FlashScreenState extends State<FlashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     Timer(const Duration(seconds: 3),() {
         Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const StartedPage()));

@@ -37,7 +37,7 @@ class DataBase {
     }
   }
 
-  static Future<bool> addRemoveFavroite(data) async{
+  static Future<bool> addRemoveFavroite(Data data) async{
     bool flag = data.favorite;
     data.favorite = !flag;
     data = await DataBase.updateData(data.id,data);
@@ -52,16 +52,17 @@ class DataBase {
 
   static Future<List<Data>> favoriteItem() async{
 
-      List<Map<String, dynamic>> users = await userCollection.find().toList();
+      List<Map<String, dynamic>> users = await userCollection.find({"favorite": true}).toList();
       List<Data> data = users.map((dynamic item) => Data.fromJson(item)).toList();
-      data = data.where((Data item) => item.favorite == true).toList();
       return data;
   }
 
   static Future<List<Data>> cartItem() async{
-    List<Map<String, dynamic>> users = await userCollection.find({"cart" : {r"$gt" : 0 }}).toList();
+    List<Map<String, dynamic>> users = await userCollection.find().toList();
     print(users);
     List<Data> data = users.map((dynamic item) => Data.fromJson(item)).toList();
+    data = data.where((Data item) => item.cart > 0).toList();
+
     return data;
   }
 
